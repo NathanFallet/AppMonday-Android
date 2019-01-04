@@ -1,4 +1,4 @@
-package me.nathanfallet.appmonday;
+package me.nathanfallet.appmonday.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.nathanfallet.appmonday.R;
 
 public class MainActivity extends AppCompatActivity {
 
