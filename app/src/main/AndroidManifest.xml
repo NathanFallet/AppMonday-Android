@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.nathanfallet.appmonday">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/appmondayradius"
@@ -19,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.AppDetailsActivity"></activity>
     </application>
 
 </manifest>

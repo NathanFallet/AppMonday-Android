@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -39,17 +38,14 @@ public class Utils {
             int HttpResult = con.getResponseCode();
             if (HttpResult == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
-                String line = null;
+                String line;
+
                 while ((line = br.readLine()) != null) {
                     sb.append(line);
                 }
                 br.close();
-                String raw = sb.toString();
 
-                // DEBUG ONLY
-                System.out.println("RESPONSE=" + raw);
-
-                return raw;
+                return sb.toString();
             }
 
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 package me.nathanfallet.appmonday.ui;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -124,36 +125,57 @@ public class AppListFragment extends Fragment {
 
     }
 
-    public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.MyViewHolder> {
+    public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.AppListHolder> {
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
-        public class MyViewHolder extends RecyclerView.ViewHolder {
-            public View mView;
+        public class AppListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-            public MyViewHolder(View v) {
+            private View mView;
+
+            public AppListHolder(View v) {
                 super(v);
+                v.setOnClickListener(this);
                 mView = v;
             }
 
+            public View getView() {
+                return mView;
+            }
+
+            @Override
+            public void onClick(View v) {
+                App a = apps.get(getAdapterPosition());
+
+                // Create an Intent to open app details
+                Intent intent = new Intent(getActivity(), AppDetailsActivity.class);
+                intent.putExtra("app_name", a.getName());
+                intent.putExtra("app_user", a.getUser());
+                intent.putExtra("app_description", a.getDescription());
+                intent.putExtra("app_link", a.getLink());
+                intent.putExtra("app_logo", a.getLogo());
+                startActivity(intent);
+            }
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public AppListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            // create a new view
+        public AppListAdapter.AppListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            // Create a new view
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.app_list_item,
                     parent, false);
 
-            return new MyViewHolder(v);
+            return new AppListHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
-            View v = holder.mView;
+        public void onBindViewHolder(AppListHolder holder, int position) {
             App a = apps.get(position);
+
+
+            View v = holder.getView();
 
             TextView name = v.findViewById(R.id.app_name);
             name.setText(a.getName());
