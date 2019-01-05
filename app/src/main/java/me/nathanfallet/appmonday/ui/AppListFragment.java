@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -128,13 +130,11 @@ public class AppListFragment extends Fragment {
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
         public class MyViewHolder extends RecyclerView.ViewHolder {
+            public View mView;
 
-            // each data item is just a string in this case
-            public TextView mTextView;
-
-            public MyViewHolder(TextView v) {
+            public MyViewHolder(View v) {
                 super(v);
-                mTextView = v;
+                mView = v;
             }
 
         }
@@ -143,20 +143,29 @@ public class AppListFragment extends Fragment {
         @Override
         public AppListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // create a new view
-            TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.app_list_item, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.app_list_item,
+                    parent, false);
 
-            MyViewHolder vh = new MyViewHolder(v);
-            return vh;
+            return new MyViewHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            // - get element from your dataset at this position
-            // - replace the contents of the view with that element
-            holder.mTextView.setText(apps.get(position).getName());
+            View v = holder.mView;
+            App a = apps.get(position);
 
+            TextView name = v.findViewById(R.id.app_name);
+            name.setText(a.getName());
+
+            TextView user = v.findViewById(R.id.app_user);
+            user.setText(a.getUser());
+
+            TextView date = v.findViewById(R.id.app_date);
+            date.setText(a.getDate());
+
+            ImageView logo = v.findViewById(R.id.app_logo);
+            Picasso.get().load(a.getLogo()).error(R.drawable.nologo).into(logo);
         }
 
         @Override

@@ -55,7 +55,7 @@ public class App {
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = Utils.parseDate(date);
     }
 
     public String getLogo() {
@@ -63,6 +63,6 @@ public class App {
     }
 
     public void setLogo(String logo) {
-        this.logo = logo;
+        this.logo = logo.isEmpty() ? "nologo" : logo;
     }
 }
