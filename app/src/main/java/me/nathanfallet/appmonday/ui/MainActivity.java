@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AppListFragment(), "App List");
-        adapter.addFragment(new AddFragment(), "Submit an app");
+        adapter.addFragment(new AppListFragment(), "Last projects");
+        adapter.addFragment(new AddFragment(), "Submit a project");
         adapter.addFragment(new InfosFragment(), "Informations");
         viewPager.setAdapter(adapter);
     }

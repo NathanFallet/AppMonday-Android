@@ -1,15 +1,52 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.nathanfallet.appmonday.ui.InfosFragment">
+    tools:context="me.nathanfallet.appmonday.ui.InfosFragment" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Infos"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is AppMonday?"
+            android:textSize="20sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Every Monday, we will share one project you submitted here in our Instagram story. Fill this form and share with us your project! It can be a website, a mobile app, an open source project, ... everything you coded."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instagram accounts"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView android:id="@+id/info_nathanfallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#318CE7"
+            android:text="nathanfallet"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView android:id="@+id/info_codecommunity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#318CE7"
+            android:text="code.community" />
+
+    </LinearLayout>
 
 </RelativeLayout>
