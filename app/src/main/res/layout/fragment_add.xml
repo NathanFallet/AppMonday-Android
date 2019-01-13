@@ -5,10 +5,12 @@
     tools:context="me.nathanfallet.appmonday.ui.AddFragment">
 
     <TextView
+        android:id="@+id/open_web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit an app"
-        android:textSize="40dp"
+        android:text="Open AppMonday.xyz"
+        android:textSize="30sp"
+        android:textColor="#318CE7"
         android:textStyle="bold"
         android:layout_centerInParent="true"/>
 
