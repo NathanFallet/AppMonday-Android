@@ -1,4 +1,4 @@
-package me.nathanfallet.appmonday.ui;
+package me.nathanfallet.appmonday.controllers;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -21,10 +21,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import me.nathanfallet.appmonday.R;
+import me.nathanfallet.appmonday.ui.AppDetailsActivity;
 import me.nathanfallet.appmonday.utils.App;
 import me.nathanfallet.appmonday.utils.Utils;
 
-public class AppListFragment extends Fragment {
+public class ProjectsFragment extends Fragment {
 
     protected boolean loadingMore = false;
     protected boolean hasMore = true;
@@ -35,7 +36,7 @@ public class AppListFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
 
-    public AppListFragment() {
+    public ProjectsFragment() {
 
     }
 
