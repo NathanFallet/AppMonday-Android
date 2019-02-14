@@ -25,11 +25,11 @@ public class ProjectDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
-        final String project_name = intent != null ? intent.getStringExtra("app_name") : "";
-        final String project_user = intent != null ? intent.getStringExtra("app_user") : "";
-        final String project_logo = intent != null ? intent.getStringExtra("app_logo") : "";
-        final String project_link = intent != null ? intent.getStringExtra("app_link") : "";
-        final String project_description = intent != null ? intent.getStringExtra("app_description") : "";
+        final String project_name = intent != null ? intent.getStringExtra("name") : "";
+        final String project_user = intent != null ? intent.getStringExtra("user") : "";
+        final String project_logo = intent != null ? intent.getStringExtra("logo") : "";
+        final String project_link = intent != null ? intent.getStringExtra("link") : "";
+        final String project_description = intent != null ? intent.getStringExtra("description") : "";
 
         TextView name = findViewById(R.id.project_name);
         name.setText(project_name);

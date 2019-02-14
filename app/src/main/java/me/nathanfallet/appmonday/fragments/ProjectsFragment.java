@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ import me.nathanfallet.appmonday.activities.ProjectDetailsActivity;
 
 public class ProjectsFragment extends Fragment {
 
-    protected boolean loadingMore = false;
+    protected boolean loading = false;
     protected boolean hasMore = true;
     protected ArrayList<Project> projects = new ArrayList<>();
 
@@ -57,6 +58,15 @@ public class ProjectsFragment extends Fragment {
         mAdapter = new ProjectsAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
+        mRecyclerView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if (!loading && hasMore && mRecyclerView.getChildAt(0).getBottom() <= (mRecyclerView.getHeight() + mRecyclerView.getScrollY())) {
+                    loadProjects();
+                }
+            }
+        });
+
         return mRecyclerView;
     }
 
@@ -64,6 +74,7 @@ public class ProjectsFragment extends Fragment {
 
         @Override
         protected ArrayList<Project> doInBackground(String[] objects) {
+            loading = true;
             return new ProjectsManager().getList(projects.size(), 10);
         }
 
@@ -71,9 +82,14 @@ public class ProjectsFragment extends Fragment {
         protected void onPostExecute(ArrayList<Project> array) {
             super.onPostExecute(array);
 
-            projects.addAll(array);
+            loading = false;
 
-            mAdapter.notifyDataSetChanged();
+            if(array.size() > 0) {
+                projects.addAll(array);
+                mAdapter.notifyDataSetChanged();
+            } else {
+                hasMore = false;
+            }
         }
 
     }
@@ -103,11 +119,11 @@ public class ProjectsFragment extends Fragment {
 
                 // Create an Intent to open app details
                 Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
-                intent.putExtra("app_name", a.getName());
-                intent.putExtra("app_user", a.getUser());
-                intent.putExtra("app_description", a.getDescription());
-                intent.putExtra("app_link", a.getLink());
-                intent.putExtra("app_logo", a.getLogo());
+                intent.putExtra("name", a.getName());
+                intent.putExtra("user", a.getUser());
+                intent.putExtra("description", a.getDescription());
+                intent.putExtra("link", a.getLink());
+                intent.putExtra("logo", a.getLogo());
                 startActivity(intent);
             }
         }
