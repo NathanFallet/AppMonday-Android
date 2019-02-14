@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import me.nathanfallet.appmonday.R;
 import me.nathanfallet.appmonday.fragments.CompetitionsFragment;
 import me.nathanfallet.appmonday.fragments.ProjectsFragment;
+import me.nathanfallet.appmonday.fragments.SettingsFragment;
 import me.nathanfallet.appmonday.fragments.TipsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ProjectsFragment projectsFragment;
     private CompetitionsFragment competitionsFragment;
     private TipsFragment tipsFragment;
+    private SettingsFragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,28 +36,25 @@ public class MainActivity extends AppCompatActivity {
         projectsFragment = new ProjectsFragment();
         competitionsFragment = new CompetitionsFragment();
         tipsFragment = new TipsFragment();
+        settingsFragment = new SettingsFragment();
 
-        setTitle("Projects");
-        setFragment(projectsFragment);
+        setFragment("Projects", projectsFragment);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_projects:
-                        setTitle("Projects");
-                        setFragment(projectsFragment);
+                        setFragment("Projects", projectsFragment);
                         break;
                     case R.id.nav_competitions:
-                        setTitle("Competitions");
-                        setFragment(competitionsFragment);
+                        setFragment("Competitions", competitionsFragment);
                         break;
                     case R.id.nav_tips:
-                        setTitle("Tips");
-                        setFragment(tipsFragment);
+                        setFragment("Tips", tipsFragment);
                         break;
                     case R.id.nav_settings:
-
+                        setFragment("Settings", settingsFragment);
                         break;
                 }
 
@@ -64,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setFragment(Fragment fragment) {
+    private void setFragment(String title, Fragment fragment) {
+        setTitle(title);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();

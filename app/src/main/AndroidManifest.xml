@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".activities.ProjectDetailsActivity" />
         <activity android:name=".activities.CompetitionDetailsActivity" />
-        <activity android:name=".activities.TipDetailsActivity"></activity>
+        <activity android:name=".activities.TipDetailsActivity" />
     </application>
 
 </manifest>
