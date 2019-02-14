@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:project="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,11 +9,11 @@
         android:layout_height="56dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/nav_items"
-        app:itemTextColor="@color/nav_items"
-        app:menu="@menu/nav_items" />
+        project:labelVisibilityMode="labeled"
+        project:itemBackground="@color/colorPrimary"
+        project:itemIconTint="@color/nav_items"
+        project:itemTextColor="@color/nav_items"
+        project:menu="@menu/nav_items" />
 
     <FrameLayout
         android:id="@+id/main_frame"

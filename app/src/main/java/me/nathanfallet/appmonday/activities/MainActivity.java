@@ -1,4 +1,4 @@
-package me.nathanfallet.appmonday.controllers;
+package me.nathanfallet.appmonday.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import me.nathanfallet.appmonday.R;
+import me.nathanfallet.appmonday.fragments.CompetitionsFragment;
+import me.nathanfallet.appmonday.fragments.ProjectsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

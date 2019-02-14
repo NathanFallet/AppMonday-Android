@@ -1,4 +1,4 @@
-package me.nathanfallet.appmonday.controllers;
+package me.nathanfallet.appmonday.fragments;
 
 
 import android.os.Bundle;

@@ -8,7 +8,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp">
 
-    <ImageView android:id="@+id/app_logo"
+    <ImageView android:id="@+id/project_logo"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"/>
@@ -24,21 +24,21 @@
             android:orientation="horizontal"
             android:layout_marginBottom="4dp" >
 
-            <TextView android:id="@+id/app_name"
+            <TextView android:id="@+id/project_name"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="App name" />
 
-            <TextView android:id="@+id/app_date"
+            <TextView android:id="@+id/project_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date" />
 
         </LinearLayout>
 
-        <TextView android:id="@+id/app_user"
+        <TextView android:id="@+id/project_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="App user" />

@@ -1,6 +1,8 @@
-package me.nathanfallet.appmonday.utils;
+package me.nathanfallet.appmonday.models;
 
-public class App {
+import me.nathanfallet.appmonday.utils.Utils;
+
+public class Project {
 
     private String name;
     private String description;
@@ -9,7 +11,7 @@ public class App {
     private String date;
     private String logo;
 
-    public App(String name, String description, String user, String link, String date, String logo) {
+    public Project(String name, String description, String user, String link, String date, String logo) {
         setName(name);
         setDescription(description);
         setUser(user);

@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Every Monday, we will share one project you submitted here in our Instagram story. Fill this form and share with us your project! It can be a website, a mobile app, an open source project, ... everything you coded."/>
+            android:text="Every Monday, we will share one project you submitted here in our Instagram story. Fill this form and share with us your project! It can be a website, a mobile project, an open source project, ... everything you coded."/>
 
         <TextView
             android:layout_width="wrap_content"
