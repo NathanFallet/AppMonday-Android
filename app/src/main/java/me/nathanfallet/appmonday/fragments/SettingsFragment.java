@@ -11,14 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import me.nathanfallet.appmonday.R;
-import me.nathanfallet.appmonday.activities.TipDetailsActivity;
 import me.nathanfallet.appmonday.utils.SettingsElement;
 import me.nathanfallet.appmonday.utils.SettingsElementButton;
 import me.nathanfallet.appmonday.utils.SettingsSection;
@@ -36,6 +33,8 @@ public class SettingsFragment extends Fragment {
     }
 
     public void loadSettings() {
+        sections.clear();
+
         SettingsElement[] section1 = {
                 new SettingsElementButton("moreInfo", "Check out our website for more!", new Runnable() {
                     @Override
