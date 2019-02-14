@@ -4,6 +4,7 @@ import me.nathanfallet.appmonday.utils.Utils;
 
 public class Project {
 
+    private int id;
     private String name;
     private String description;
     private String user;
@@ -11,13 +12,22 @@ public class Project {
     private String date;
     private String logo;
 
-    public Project(String name, String description, String user, String link, String date, String logo) {
+    public Project(int id, String name, String description, String user, String link, String date, String logo) {
+        setId(id);
         setName(name);
         setDescription(description);
         setUser(user);
         setLink(link);
         setDate(date);
         setLogo(logo);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -67,4 +77,5 @@ public class Project {
     public void setLogo(String logo) {
         this.logo = logo.isEmpty() ? "nologo" : logo;
     }
+
 }

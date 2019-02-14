@@ -9,14 +9,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ProjectsManager {
+public class CompetitionsManager {
 
-    public ArrayList<Project> getList(int start, int limit) {
-        ArrayList<Project> projects = new ArrayList<>();
+    public ArrayList<Competition> getList(int start, int limit) {
+        ArrayList<Competition> competitions = new ArrayList<>();
 
         try {
 
-            URL url = new URL("https://api.appmonday.xyz/project/project.php?start="+start+"&limit="+limit);
+            URL url = new URL("https://api.appmonday.xyz/competition/competition.php?start="+start+"&limit="+limit);
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setDoOutput(true);
@@ -39,11 +39,11 @@ public class ProjectsManager {
                     if (array.get(i) instanceof JSONObject) {
                         JSONObject object = array.getJSONObject(i);
 
-                        Project project = new Project(object.getInt("id"), object.getString("name"), object.getString("description"),
-                                object.getString("user"), object.getString("link"),
-                                object.getString("publish"), object.getString("logo"));
+                        Competition competition = new Competition(object.getInt("id"), object.getString("name"), object.getString("description"),
+                                object.has("criterias") ? object.getString("criterias") : "", object.getString("start"),
+                                object.getString("end"), object.getBoolean("coming"), object.getBoolean("playing"));
 
-                        projects.add(project);
+                        competitions.add(competition);
                     }
                 }
             }
@@ -54,7 +54,6 @@ public class ProjectsManager {
 
         }
 
-        return projects;
+        return competitions;
     }
-
 }

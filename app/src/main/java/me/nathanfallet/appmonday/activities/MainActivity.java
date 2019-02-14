@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         projectsFragment = new ProjectsFragment();
         competitionsFragment = new CompetitionsFragment();
 
+        setTitle("Projects");
         setFragment(projectsFragment);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_projects:
+                        setTitle("Projects");
                         setFragment(projectsFragment);
                         break;
                     case R.id.nav_competitions:
+                        setTitle("Competitions");
                         setFragment(competitionsFragment);
                         break;
                     case R.id.nav_tips:

@@ -33,7 +33,7 @@ public class ProjectsFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     public ProjectsFragment() {
-        loadProjects();
+
     }
 
     public void loadProjects() {
@@ -43,6 +43,7 @@ public class ProjectsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadProjects();
     }
 
     @Override
@@ -115,15 +116,15 @@ public class ProjectsFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Project a = projects.get(getAdapterPosition());
+                Project p = projects.get(getAdapterPosition());
 
                 // Create an Intent to open app details
                 Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
-                intent.putExtra("name", a.getName());
-                intent.putExtra("user", a.getUser());
-                intent.putExtra("description", a.getDescription());
-                intent.putExtra("link", a.getLink());
-                intent.putExtra("logo", a.getLogo());
+                intent.putExtra("name", p.getName());
+                intent.putExtra("user", p.getUser());
+                intent.putExtra("description", p.getDescription());
+                intent.putExtra("link", p.getLink());
+                intent.putExtra("logo", p.getLogo());
                 startActivity(intent);
             }
         }
@@ -132,8 +133,7 @@ public class ProjectsFragment extends Fragment {
         @Override
         public ProjectsAdapter.ProjectsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // Create a new view
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_project,
-                    parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_project, parent, false);
 
             return new ProjectsHolder(v);
         }

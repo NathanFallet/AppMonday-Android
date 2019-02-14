@@ -15,6 +15,7 @@ import java.util.Map;
 
 public class Utils {
 
+    // Previous API - to be removed
     public static String query(Map<String, Object> data) {
 
         try {
