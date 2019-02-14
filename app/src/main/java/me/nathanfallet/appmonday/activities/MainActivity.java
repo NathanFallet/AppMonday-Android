@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import me.nathanfallet.appmonday.R;
 import me.nathanfallet.appmonday.fragments.CompetitionsFragment;
 import me.nathanfallet.appmonday.fragments.ProjectsFragment;
+import me.nathanfallet.appmonday.fragments.TipsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ProjectsFragment projectsFragment;
     private CompetitionsFragment competitionsFragment;
+    private TipsFragment tipsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         projectsFragment = new ProjectsFragment();
         competitionsFragment = new CompetitionsFragment();
+        tipsFragment = new TipsFragment();
 
         setTitle("Projects");
         setFragment(projectsFragment);
@@ -48,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
                         setFragment(competitionsFragment);
                         break;
                     case R.id.nav_tips:
-
+                        setTitle("Tips");
+                        setFragment(tipsFragment);
                         break;
                     case R.id.nav_settings:
 

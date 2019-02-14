@@ -15,32 +15,32 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import me.nathanfallet.appmonday.R;
-import me.nathanfallet.appmonday.activities.CompetitionDetailsActivity;
-import me.nathanfallet.appmonday.models.Competition;
-import me.nathanfallet.appmonday.models.CompetitionsManager;
+import me.nathanfallet.appmonday.activities.TipDetailsActivity;
+import me.nathanfallet.appmonday.models.Tip;
+import me.nathanfallet.appmonday.models.TipsManager;
 
-public class CompetitionsFragment extends Fragment {
+public class TipsFragment extends Fragment {
 
     protected boolean loading = false;
     protected boolean hasMore = true;
-    protected ArrayList<Competition> competitions = new ArrayList<>();
+    protected ArrayList<Tip> tips = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public CompetitionsFragment() {
+    public TipsFragment() {
 
     }
 
-    public void loadCompetitions() {
-        new CompetitionsTask().execute();
+    public void loadTips() {
+        new TipsFragment.TipsTask().execute();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadCompetitions();
+        loadTips();
     }
 
     @Override
@@ -53,14 +53,14 @@ public class CompetitionsFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter
-        mAdapter = new CompetitionsFragment.CompetitionsAdapter();
+        mAdapter = new TipsFragment.TipsAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
                 if (!loading && hasMore && mRecyclerView.getChildAt(0).getBottom() <= (mRecyclerView.getHeight() + mRecyclerView.getScrollY())) {
-                    loadCompetitions();
+                    loadTips();
                 }
             }
         });
@@ -68,22 +68,22 @@ public class CompetitionsFragment extends Fragment {
         return mRecyclerView;
     }
 
-    public class CompetitionsTask extends AsyncTask<String, Void, ArrayList<Competition>> {
+    public class TipsTask extends AsyncTask<String, Void, ArrayList<Tip>> {
 
         @Override
-        protected ArrayList<Competition> doInBackground(String[] objects) {
+        protected ArrayList<Tip> doInBackground(String[] objects) {
             loading = true;
-            return new CompetitionsManager().getList(competitions.size(), 10);
+            return new TipsManager().getList(tips.size(), 10);
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Competition> array) {
+        protected void onPostExecute(ArrayList<Tip> array) {
             super.onPostExecute(array);
 
             loading = false;
 
             if(array.size() > 0) {
-                competitions.addAll(array);
+                tips.addAll(array);
                 mAdapter.notifyDataSetChanged();
             } else {
                 hasMore = false;
@@ -92,16 +92,16 @@ public class CompetitionsFragment extends Fragment {
 
     }
 
-    public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsFragment.CompetitionsAdapter.CompetitionsHolder> {
+    public class TipsAdapter extends RecyclerView.Adapter<TipsFragment.TipsAdapter.TipsHolder> {
 
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder
-        public class CompetitionsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public class TipsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
             private View mView;
 
-            public CompetitionsHolder(View v) {
+            public TipsHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
                 mView = v;
@@ -113,44 +113,43 @@ public class CompetitionsFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Competition c = competitions.get(getAdapterPosition());
+                Tip t = tips.get(getAdapterPosition());
 
                 // Create an Intent to open app details
-                Intent intent = new Intent(getActivity(), CompetitionDetailsActivity.class);
-                intent.putExtra("name", c.getName());
-                intent.putExtra("date", c.getStart()+" - "+c.getEnd());
-                intent.putExtra("description", c.getDescription());
-                intent.putExtra("criterias", c.getCriterias());
+                Intent intent = new Intent(getActivity(), TipDetailsActivity.class);
+                intent.putExtra("name", t.getName());
+                intent.putExtra("date", t.getDate());
+                intent.putExtra("description", t.getDescription());
                 startActivity(intent);
             }
         }
 
         // Create new views (invoked by the layout manager)
         @Override
-        public CompetitionsFragment.CompetitionsAdapter.CompetitionsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public TipsFragment.TipsAdapter.TipsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // Create a new view
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_competition, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_tip, parent, false);
 
-            return new CompetitionsFragment.CompetitionsAdapter.CompetitionsHolder(v);
+            return new TipsFragment.TipsAdapter.TipsHolder(v);
         }
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override
-        public void onBindViewHolder(CompetitionsFragment.CompetitionsAdapter.CompetitionsHolder holder, int position) {
-            Competition c = competitions.get(position);
+        public void onBindViewHolder(TipsFragment.TipsAdapter.TipsHolder holder, int position) {
+            Tip t = tips.get(position);
 
             View v = holder.getView();
 
-            TextView name = v.findViewById(R.id.competition_name);
-            name.setText(c.getName());
+            TextView name = v.findViewById(R.id.tip_name);
+            name.setText(t.getName());
 
-            TextView date = v.findViewById(R.id.competition_date);
-            date.setText(c.getStart()+" - "+c.getEnd());
+            TextView date = v.findViewById(R.id.tip_date);
+            date.setText(t.getDate());
         }
 
         @Override
         public int getItemCount() {
-            return competitions.size();
+            return tips.size();
         }
     }
 
